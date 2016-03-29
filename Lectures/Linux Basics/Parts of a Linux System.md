@@ -172,7 +172,7 @@ _Note: You can also open a file with nano with the full path. For example, we co
 
 There are two ways to install packages on an Ubuntu system: ``dpkg`` and APT.
 
-#### Installing and removing software with ``dpkg``
+### Installing and removing software with ``dpkg``
 
 ``dpkg`` takes a ``.deb`` file on your hard drive and installs it, and it does _not_ have any updating functionality. It can install and remove packages, but does not automatically fetch **dependencies**. This can be remedied with APT later on. Let's look at a demo of ``dpkg``:
 
@@ -196,9 +196,9 @@ Processing triggers for man-db (2.6.7.1-1ubuntu1) ...
 
 Now ``dpkg`` is great for simple things, but what if you want updating functionality? What if your package has **dependencies**, other packages that are required for it to run? That's where APT comes in.
 
-#### Managing packages with APT
+### Managing packages with APT
 
-##### Repositories and the sources.list file
+#### Repositories and the sources.list file
 
 APT still uses ``.deb`` files under the hood, but it fetches them from **repositories,** servers accessed via HTTP or FTP that store ``.deb`` packages. Most distributions of Linux maintain their own "general use" repositories, which come enabled by default, but you can also add your own third-party repositories. The list of APT repositories is stored in ``/etc/apt/sources.list`` and sometimes also in the folder ``/etc/apt/sources.list.d/``. Let's open ``/etc/apt/sources.list`` with ``nano``. Don't be alarmed about the colors, that's just nano's built-in syntax highlighting.
 
