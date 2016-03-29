@@ -25,6 +25,7 @@ These notes cover the parts of a Linux system, in (approximately) the order they
 - **``apt-get``** - Command-line tool for using APT
 - **repository** - A central place where ``.deb`` packages and other package info is stored so APT can fetch them
 - **dependencies** - Other packages that a given software needs to run
+- **flag** - a command-line argument. For example, ``-all`` is a common flag for the ``ls`` command.
 
 ---
 
@@ -84,6 +85,22 @@ cyberpatriot@demo-1:~$ cd ./someFolder
 cyberpatriot@demo-1:~/someFolder$
 ```
 
+Finally, let's say we want to go up one directory (back into /home/cyberpatriot) from ``~/someFolder``.
+
+```
+cyberpatriot@demo-1:~/someFolder$ cd ..
+cyberpatriot@demo-1:~$
+```
+
+Just to make sure we are where we think we are, we can run ``pwd``.
+
+```
+cyberpatriot@demo-1:~$ pwd
+/home/cyberpatriot
+```
+
+That's it! Don't forget these commands. They are absolutely irreplaceable for getting around a Linux system.
+
 ### The List Command : ``ls``
 
 If you need to know what files/folders are inside your working directory, you can run ``ls``. It prints a list of everything in your directory (or another directory, if you specify one).
@@ -93,6 +110,36 @@ cyberpatriot@demo-1:~$ ls
 cmatrix_1.2a-5_amd64.deb      super-cool-script.sh      someFolder
 ```
 
+``ls`` also has some optional parameters you can pass to it. For example, let's say we wanted to see the permissions information and the date the files were modified, and we wanted to show hidden files. We can run ``ls`` with the ``-all`` **flag**, like so:
+
+```
+cyberpatriot@demo-1:~$ ls -all
+total 53
+drwxr-xr-x+ 4 cyberpatriot cyberpatriot     8 Mar 29 14:20 .
+drwxr-xr-x+ 3 root         root             3 Mar 29 13:35 ..
+-rw-r--r--  1 cyberpatriot cyberpatriot   220 Mar 29 13:35 .bash_logout
+-rw-r--r--  1 cyberpatriot cyberpatriot  3637 Mar 29 13:35 .bashrc
+drwx------+ 2 cyberpatriot cyberpatriot     3 Mar 29 13:36 .cache
+-rw-r--r--  1 cyberpatriot cyberpatriot   675 Mar 29 13:35 .profile
+-rw-r--r--  1 cyberpatriot cyberpatriot 16636 Apr 12  2014 cmatrix_1.2a-5_amd64.deb
+drwxr-xr-x+ 2 cyberpatriot cyberpatriot     3 Mar 29 14:20 mytextfiles
+```
+
+### ``man`` Pages
+
+You can imagine it gets complicated to remember all the arguments and flags for every command. There are hundreds of commands, so what if you forget something?
+
+Man pages are here to help. You can run ``man <software name>`` and get a manual page about it. For example, for the manual page about using ``man``, you'd run:
+```
+cyberpatriot@demo-1:~$ man man
+```
+
+Which gets you this:
+
+![](http://www.basicconfig.com/files/imagepicker/j/jinlusuh/man_screenshot01.png)
+
+Can you open the man page for ``ls``?
+
 ### Using the GNU Nano text editor
 
 Most configuration files at the command line are just plain text files, so it is _very_ important that you know how to use a text editor at the Linux command line. There are many text editors available, with the two most notable being VIM and Nano. VIM is a very advanced, powerful editor, so we'll get into that later. Nano is a simple editor with basic features. Let's edit a text file with nano.
@@ -100,12 +147,32 @@ Most configuration files at the command line are just plain text files, so it is
 1. First we'll use ``ls`` to find the filename we want to edit. We already know the file is in the folder ``/home/cyberpatriot/mytextfiles``, so we'll ``cd`` there.
 
 ```
+cyberpatriot@demo-1:~$ ls
+cmatrix_1.2a-5_amd64.deb
+mytextfiles
 cyberpatriot@demo-1:~$ cd ./mytextfiles
+cyberpatriot@demo-1:~/mytextfiles$ ls
+some-file.txt
+cyberpatriot@demo-1:~$
 ```
+
+Now we know the file name, so let's open it with ``nano``.
+
+```
+cyberpatriot@demo-1:~$ nano ./some-file.txt
+```
+
+_Recognize the ``./`` in the path above?_
+
+And now you're at a text editor. It's very simple to use as long as you know that the ``^`` character in all the shortcuts represents the CTRL key. So to save and exit, you'd press CTRL+X (then Y for yes, and ENTER, following the prompts on your screen). Pretty simple!
+
+_Note: You can also open a file with nano with the full path. For example, we could have run ``nano /home/cyberpatriot/mytextfiles/some-file.txt`` in the example above. We just used the ``.`` relative path to save keystrokes._
 
 ## Installing Packages
 
-There are two ways to install packages on an Ubuntu system: ``dpkg`` and APT. 
+There are two ways to install packages on an Ubuntu system: ``dpkg`` and APT.
+
+#### Installing and removing software with ``dpkg``
 
 ``dpkg`` takes a ``.deb`` file on your hard drive and installs it, and it does _not_ have any updating functionality. It can install and remove packages, but does not automatically fetch **dependencies**. This can be remedied with APT later on. Let's look at a demo of ``dpkg``:
 
@@ -129,4 +196,12 @@ Processing triggers for man-db (2.6.7.1-1ubuntu1) ...
 
 Now ``dpkg`` is great for simple things, but what if you want updating functionality? What if your package has **dependencies**, other packages that are required for it to run? That's where APT comes in.
 
-APT still uses ``.deb`` files under the hood, but it fetches them from **repositories,** servers accessed via HTTP or FTP that store ``.deb`` packages. Most distributions of Linux maintain their own "general use" repositories, which come enabled by default, but you can also add your own third-party repositories. The list of APT repositories is stored in ``/etc/apt/sources.list`` and sometimes also in the folder ``/etc/apt/sources.list.d/``.
+#### Managing packages with APT
+
+APT still uses ``.deb`` files under the hood, but it fetches them from **repositories,** servers accessed via HTTP or FTP that store ``.deb`` packages. Most distributions of Linux maintain their own "general use" repositories, which come enabled by default, but you can also add your own third-party repositories. The list of APT repositories is stored in ``/etc/apt/sources.list`` and sometimes also in the folder ``/etc/apt/sources.list.d/``. Let's open ``/etc/apt/sources.list`` with ``nano``.
+
+```
+cyberpatriot@demo-1:~$ nano /etc/apt/sources.list
+```
+
+_Note: See how ``nano`` is warning us we don't have write permission? How could we fix that if we wanted to write to the file instead of just reading it?_
