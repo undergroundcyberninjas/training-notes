@@ -13,6 +13,7 @@ These notes cover the parts of a Linux system, in (approximately) the order they
 
 ## Key Terms/Programs
 - **Kernel** - The core part of the operating system which interfaces directly with hardware. It is the first thing that boots.
+- **Master Boot Record** - The really really tiny part (512 bytes) at the beginning of your hard drive that tells your computer about the partitioning
 - **GRUB Bootloader** - The really really tiny program that starts the Linux kernel and passes it the right bootup parameters.
 - **``init``** - Program that runs on startup and manages all the  background processes in Linux.
 - **Daemons** - Programs that run in the background (such as an SSH server)
@@ -31,7 +32,7 @@ These notes cover the parts of a Linux system, in (approximately) the order they
 
 # The Linux Boot Process
 1. Your computer starts up and the BIOS goes through POST.
-2. After POST, the BIOS looks at the Master Boot Record (MBR) and loads the first bootable portion of the hard drive: GRUB.
+2. After POST, the BIOS looks at the **Master Boot Record (MBR)** and loads the first bootable portion of the hard drive: **GRUB**.
 3. GRUB presents you with a menu from which you boot Linux. GRUB passes very basic information to the Linux kernel about starting (you can press ``e`` at the GRUB menu to edit this)
 4. The Linux kernel boots:
 	- Loads itself and some other uber-important stuff into RAM
@@ -251,3 +252,63 @@ Fetched 132 kB in 3s (36.3 kB/s)
 Reading package lists...
 cyberpatriot@demo-1:~$
 ```
+
+_Do you see it fetching stuff from the repositories in ``sources.list``?_
+
+Now APT has all the latest information about all our packages.
+
+#### Installing Packages
+
+Let's install something. In this example, we're going to install an SSH server package. You can usually find a package name on Google, but I already know that this package is called ``openssh-server``. So let's install it! Be sure to run ``apt-get update`` if you haven't run it recently; it's always a good idea to keep package info up to date.
+
+```
+cyberpatriot@demo-1:~$ sudo apt-get update
+Ign http://archive.ubuntu.com trusty InRelease
+Get:1 http://archive.ubuntu.com trusty-updates InRelease [65.9 kB]
+Get:2 http://archive.ubuntu.com trusty-security InRelease [65.9 kB]
+Hit http://archive.ubuntu.com trusty Release.gpg
+Hit http://archive.ubuntu.com trusty-updates/main amd64 Packages
+Hit http://archive.ubuntu.com trusty-updates/restricted amd64 Packages
+Hit http://archive.ubuntu.com trusty-updates/universe amd64 Packages
+Hit http://archive.ubuntu.com trusty-updates/multiverse amd64 Packages
+Hit http://archive.ubuntu.com trusty-updates/main Translation-en
+Hit http://archive.ubuntu.com trusty-updates/multiverse Translation-en
+Hit http://archive.ubuntu.com trusty-updates/restricted Translation-en
+Hit http://archive.ubuntu.com trusty-updates/universe Translation-en
+Hit http://archive.ubuntu.com trusty-security/main amd64 Packages
+Hit http://archive.ubuntu.com trusty-security/restricted amd64 Packages
+Hit http://archive.ubuntu.com trusty-security/universe amd64 Packages
+Hit http://archive.ubuntu.com trusty-security/multiverse amd64 Packages
+Hit http://archive.ubuntu.com trusty-security/main Translation-en
+Hit http://archive.ubuntu.com trusty-security/multiverse Translation-en
+Hit http://archive.ubuntu.com trusty-security/restricted Translation-en
+Hit http://archive.ubuntu.com trusty-security/universe Translation-en
+Hit http://archive.ubuntu.com trusty Release
+Hit http://archive.ubuntu.com trusty/main amd64 Packages
+Hit http://archive.ubuntu.com trusty/restricted amd64 Packages
+Hit http://archive.ubuntu.com trusty/universe amd64 Packages
+Hit http://archive.ubuntu.com trusty/multiverse amd64 Packages
+Hit http://archive.ubuntu.com trusty/main Translation-en
+Hit http://archive.ubuntu.com trusty/multiverse Translation-en
+Hit http://archive.ubuntu.com trusty/restricted Translation-en
+Hit http://archive.ubuntu.com trusty/universe Translation-en
+Fetched 132 kB in 3s (36.3 kB/s)
+Reading package lists...
+cyberpatriot@demo-1:~$ sudo apt-get install openssh-server
+```
+
+It will give you a bunch of information, including a list of dependencies needed, and the amount of disk space the program requires. If you are okay with this, type ``y`` for yes and press ENTER.
+
+Once the command finishes, it should be installed. That's it! Installing packages with APT is that simple!
+
+## APT Cheat Sheet
+
+When in doubt, consult Google or the ``man`` page, but here are some of the most common APT tasks (``<package-name>`` represents a package name _without_ the ``<>``):
+
+- **Upgrade** - ``apt-get upgrade`` - Updates the _actual packages_, but should usually be run _after_ ``apt-get update``.
+- **Update** - ``apt-get update`` - Updates _information_ about packages, not the actual packages.
+- **Fix Missing Dependencies** - ``apt-get install -f`` - Checks to see if you have any dependencies missing and fixes them. Useful if APT crashed or was killed unexpectedly during a package install. Also useful when you've installed a ``.deb`` that has dependencies.
+- **Install** - ``apt-get install <package-name>`` - Installs a specified package
+- **Uninstall and delete from hard drive** - ``apt-get remove --purge <package-name>`` - This is different from normal ``apt-get remove`` because it removes the package files from the local disk. Handy.
+- **Automatically Remove Unnecessary Dependencies** - ``apt-get autoremove`` - Removes any packages installed as dependencies but no longer needed. Usually run after ``apt-get remove``.
+
