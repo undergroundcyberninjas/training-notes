@@ -198,10 +198,17 @@ Now ``dpkg`` is great for simple things, but what if you want updating functiona
 
 #### Managing packages with APT
 
-APT still uses ``.deb`` files under the hood, but it fetches them from **repositories,** servers accessed via HTTP or FTP that store ``.deb`` packages. Most distributions of Linux maintain their own "general use" repositories, which come enabled by default, but you can also add your own third-party repositories. The list of APT repositories is stored in ``/etc/apt/sources.list`` and sometimes also in the folder ``/etc/apt/sources.list.d/``. Let's open ``/etc/apt/sources.list`` with ``nano``.
+##### Repositories and the sources.list file
+
+APT still uses ``.deb`` files under the hood, but it fetches them from **repositories,** servers accessed via HTTP or FTP that store ``.deb`` packages. Most distributions of Linux maintain their own "general use" repositories, which come enabled by default, but you can also add your own third-party repositories. The list of APT repositories is stored in ``/etc/apt/sources.list`` and sometimes also in the folder ``/etc/apt/sources.list.d/``. Let's open ``/etc/apt/sources.list`` with ``nano``. Don't be alarmed about the colors, that's just nano's built-in syntax highlighting.
 
 ```
 cyberpatriot@demo-1:~$ nano /etc/apt/sources.list
 ```
 
+![](https://raw.githubusercontent.com/bhscyberninjas/training-notes/master/Images/sources.list-screenshot.png)
+
 _Note: See how ``nano`` is warning us we don't have write permission? How could we fix that if we wanted to write to the file instead of just reading it?_
+
+So we have only the three default repositories enabled on our system right now. If you wanted to add a repository for Webmin, for example, you might add: ``deb http://download.webmin.com/download/repository sarge contrib`` to the ``sources.list`` file. Then you could save it and run ``apt-get update`` and you'd be able to install software from that repository.
+
