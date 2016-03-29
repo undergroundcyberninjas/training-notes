@@ -212,3 +212,42 @@ _Note: See how ``nano`` is warning us we don't have write permission? How could 
 
 So we have only the three default repositories enabled on our system right now. If you wanted to add a repository for Webmin, for example, you might add: ``deb http://download.webmin.com/download/repository sarge contrib`` to the ``sources.list`` file. Then you could save it and run ``apt-get update`` and you'd be able to install software from that repository.
 
+#### Updating APT package lists
+
+Arguably the most important APT command is ``apt-get update``, which fetches updated information on packages. It doesn't install anything, it just goes and finds out what packages need updates, what you can and can't install, etc. It requires root access, so prefix it with ``sudo``.
+
+```
+cyberpatriot@demo-1:~$ sudo apt-get update
+Ign http://archive.ubuntu.com trusty InRelease
+Get:1 http://archive.ubuntu.com trusty-updates InRelease [65.9 kB]
+Get:2 http://archive.ubuntu.com trusty-security InRelease [65.9 kB]
+Hit http://archive.ubuntu.com trusty Release.gpg
+Hit http://archive.ubuntu.com trusty-updates/main amd64 Packages
+Hit http://archive.ubuntu.com trusty-updates/restricted amd64 Packages
+Hit http://archive.ubuntu.com trusty-updates/universe amd64 Packages
+Hit http://archive.ubuntu.com trusty-updates/multiverse amd64 Packages
+Hit http://archive.ubuntu.com trusty-updates/main Translation-en
+Hit http://archive.ubuntu.com trusty-updates/multiverse Translation-en
+Hit http://archive.ubuntu.com trusty-updates/restricted Translation-en
+Hit http://archive.ubuntu.com trusty-updates/universe Translation-en
+Hit http://archive.ubuntu.com trusty-security/main amd64 Packages
+Hit http://archive.ubuntu.com trusty-security/restricted amd64 Packages
+Hit http://archive.ubuntu.com trusty-security/universe amd64 Packages
+Hit http://archive.ubuntu.com trusty-security/multiverse amd64 Packages
+Hit http://archive.ubuntu.com trusty-security/main Translation-en
+Hit http://archive.ubuntu.com trusty-security/multiverse Translation-en
+Hit http://archive.ubuntu.com trusty-security/restricted Translation-en
+Hit http://archive.ubuntu.com trusty-security/universe Translation-en
+Hit http://archive.ubuntu.com trusty Release
+Hit http://archive.ubuntu.com trusty/main amd64 Packages
+Hit http://archive.ubuntu.com trusty/restricted amd64 Packages
+Hit http://archive.ubuntu.com trusty/universe amd64 Packages
+Hit http://archive.ubuntu.com trusty/multiverse amd64 Packages
+Hit http://archive.ubuntu.com trusty/main Translation-en
+Hit http://archive.ubuntu.com trusty/multiverse Translation-en
+Hit http://archive.ubuntu.com trusty/restricted Translation-en
+Hit http://archive.ubuntu.com trusty/universe Translation-en
+Fetched 132 kB in 3s (36.3 kB/s)
+Reading package lists...
+cyberpatriot@demo-1:~$
+```
