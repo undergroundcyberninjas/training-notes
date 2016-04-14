@@ -1,7 +1,7 @@
 # Package Manager Cheat Sheet
 #### For Ubuntu/Debian
 
-Here are are some of the most common APT tasks (``<package-name>`` represents a package name _without_ the ``<>``):
+Here are are some of the most common APT tasks (``<package-name>`` represents a package name _without_ the ``<>``).
 
 | Task                                          	| Command                                   	| Description                                                                                                                                                                                                       	|
 |-----------------------------------------------	|-------------------------------------------	|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	|
@@ -13,10 +13,4 @@ Here are are some of the most common APT tasks (``<package-name>`` represents a 
 | **Automatically Remove Unnecessary Dependencies** 	| ``apt-get autoremove --purge``            	| Removes any dependencies and deletes and cached package files from your computer.                                                                                                                                 	|
 | **Setup Again**                                   	| ``dpkg-reconfigure <package-name>``       	| Goes through the package's initial setup again. Useful if you accidentally put in something wrong when you set it up, or if you broke a configuration really badly and need to start over.                        	|
 | **Install from .deb**                             	| ``dpkg -i /path/to/file.deb``             	| Installs ``/path/to/file.deb`` to your system. Does _not_ automatically fetch dependencies like APT, so you'll need to run ``apt-get install -f`` to fix that.                                                    	|
-
-### Important Things to Remember
-
-- ``/etc/apt/sources.list`` is a list of APT repositories for your system. You can also place additional ``.list`` files in the folder ``/etc/apt/sources.list.d/``. All these files are plain text and can be edited with ``nano``. They do require ``sudo`` to edit them.
-- ``root`` priveleges are required to perform package operations, so don't forget to prefix the commands above with ``sudo``!
-- The CyberPatriot training will tell you that Ubuntu's package manager is called "Software Center." Don't be fooled; Software Center is just a GUI frontend for the command-line ``apt-get`` tool.
-- ``aptitude`` is a text-based "app store" style frontend for APT. You can use this on most Debian/Ubuntu systems.
+**Edit your ``sources.list``** | ``nano /etc/apt/sources.list`` | This file contains a list of all your system's apt repositories. There may also be additional files in ``/etc/apt/sources.list.d/``.
