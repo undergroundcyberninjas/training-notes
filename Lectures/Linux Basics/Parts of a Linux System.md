@@ -17,6 +17,7 @@ These notes cover the parts of a Linux system, in (approximately) the order they
 - **GRUB Bootloader** - The really really tiny program that starts the Linux kernel and passes it the right bootup parameters.
 - **``init``** - Program that runs on startup and manages all the  background processes in Linux.
 - **Daemons** - Programs that run in the background (such as an SSH server)
+- **PAM** - Pluggable Authentication Modules, used for logon/applications. Do not control permissions, only authentication
 - **Shell** - Program that accepts commands/input from the user to run other programs. The most common shells are BASH and SH, located in ``/bin/bash`` and ``/bin/sh``, respectively.
 - **Console** or **Terminal** - Another word for the Linux command prompt; usually implied to mean the BASH shell.
 - **Package** - A premade "bundle" for installing a program easily on a Linux system. This differs _a lot_ from the Windows method to install things. On Ubuntu, these packages are ``.deb`` files.
@@ -40,9 +41,10 @@ These notes cover the parts of a Linux system, in (approximately) the order they
 	- Starts ``init``, which starts up all your background services. ``init`` is configured in ``/etc/init`` and ``/etc/init.d``.
 	- _Sometimes, all this is hidden by a splash screen, but that's usually only on desktop Linux distributions. You can often disable this by editing your GRUB config._
 5. Once ``init`` has started up all your system's daemons, you are dropped to a login screen (or your display manager, the GUI equivalent of a login prompt).
+6. When you log in, your credentials go through PAM to make sure you are who you say you are, then Linux moves on to the shell.
 
 ## After Login
-On a system without a desktop environment, once you log in, Linux runs the shell. By default, this is the BASH shell, located in ``/bin/bash``. It gives you a prompt like this:
+On a system without a desktop environment, once you log in, Linux runs the shell. By default, this is the BASH shell, located in ``/bin/bash``. There are other shells, but BASH is the one 90% of Linux systems use. It gives you a prompt like this:
 
 ```
 you@your-machine-hostname:~$
