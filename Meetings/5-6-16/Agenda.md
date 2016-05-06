@@ -1,10 +1,9 @@
 # Buckhorn High School CyberPatriot
 ### 4/22/16 - Agenda
 
-1. Review
+1. Review (~10-15min)
 	- Codecademy review quiz (5-7 harder questions only!)
-	- Linux permissions review with octals
-	- chown/chgrp review quiz (to be created)
+	- Linux Permissions - Quiz 1 (on Kahoot)
 	- verbally go over creating users/groups
 	- answer any questions
 2. Go over other basic Linux commands
@@ -22,6 +21,7 @@
 ---
 ## ``bit.ly`` Links
 
+- [Basic Commands We Haven't Covered Notes](http://bit.ly/1UEPw6Q)
 - [Package Management Notes](http://bit.ly/1O1l45g)
 - [Package Management Cheat Sheet](http://bit.ly/24wa0ok)
 - [Main GitHub Repository](http://bit.ly/1WMxShy)
