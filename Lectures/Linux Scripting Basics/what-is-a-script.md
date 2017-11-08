@@ -7,11 +7,11 @@ We've all used the **command line** on Windows and Linux. But how does it work? 
 - Commands are interpreted by a **shell**
 - One operating system can have multiple shells available
 - **Common Linux Shells:**
-	- **Bash:** most popular; this is the command line you're familiar with)
-	- **Sh:** also very popular
-	- **Csh:** shell based on the C language
-	- **Zsh:** a more modern shell
-- Common Windows Shells
+	- **Bash (Bourne Again Shell):** most popular; this is the command line you're familiar with
+	- **Sh (Bourne Shell):** also very popular; predecessor to Bash
+	- **Csh (C Shell):** shell based on the C language
+	- **Zsh (Z Shell):** a more modern shell with lots of extra features
+- **Common Windows Shells:**
 	- **Command Prompt:** a DOS-centric shell
 	- **PowerShell:** Microsoft's answer to more powerful, modern shells like Bash
 
@@ -24,7 +24,7 @@ Let's look at an example of a Bash script.
 ```
 #!/bin/bash
 
-# The Super Useful Bash Script
+# The Super Useful Bash Script Example
 # Author: Joe Bag of Donuts
 
 if [ $1 -gt 100 ]
