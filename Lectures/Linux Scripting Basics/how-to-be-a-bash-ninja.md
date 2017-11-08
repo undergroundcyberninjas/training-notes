@@ -23,6 +23,8 @@ sudo apt-get update && sudo apt-get upgrade -y
 
 The shell will run ``sudo apt-get update``, then when that's done, it will run ``sudo apt-get upgrade -y`` (the ``-y`` just tells APT to automatically say yes to downloading the upgrades). This is a great one-liner to save yourself some time in CyberPatriot.
 
+\pagebreak
+
 ## Pipes
 
 A **pipe** lets you pass the output of one command in as the input for another command. For example, to run ``command-one`` and pass its output to ``command-two``, use this:
@@ -55,4 +57,4 @@ echo "Super cool stuff to go in my text file!" > /path/to/nice-text-file.txt
 
 This will create a new text file and put ``Super cool stuff to go in my text file!`` inside.
 
-For more information on redirects, you can start here, or just Google it: [http://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO-3.html](http://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO-3.html)
+For more information on redirects, you can start here, or just Google it: http://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO-3.html
