@@ -11,6 +11,11 @@ Here are some commands that are useful when you're using the interactive shell.
 - **``touch /path/to/file``:** Creates an empty file
 - **``echo "your string of text"``:** Writes a string of text (or a variable) to the console. Very useful with pipes and redirects.
 - **``cat /path/to/file``:** Prints the contents of a file to the console. Also very useful with pipes and redirects, and in conjunction with ``grep``.
+- **``pwd``:** Prints working directory (i.e. where you are right now)
+- **``lsblk``:** Lists all connected disks (not useful in cyberpatriot, but useful in reality)
+- **``netcat -tulpn``:** Lists processes listening on ports
+- **``mv /path/to/file.txt /path/to/file-renamed.txt``:** Move a file, also doubles as a renaming tool
+- **``wget http://example.com/some/link/to/file.zip``:** Download a webpage or a file via HTTP
 
 ## ``&&`` Operator
 
