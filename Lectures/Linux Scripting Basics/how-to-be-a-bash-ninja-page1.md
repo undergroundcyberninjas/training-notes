@@ -16,6 +16,7 @@ Here are some commands that are useful when you're using the interactive shell.
 - **``netcat -tulpn``:** Lists processes listening on ports
 - **``mv /path/to/file.txt /path/to/file-renamed.txt``:** Move a file, also doubles as a renaming tool
 - **``wget http://example.com/some/link/to/file.zip``:** Download a webpage or a file via HTTP
+- **``more``:** Use to pipe long command output into to make it scrollable. Ex: ``ls -l | more``
 
 ## ``&&`` Operator
 
